@@ -1,6 +1,5 @@
-  
-package com.project.serviceimpl;
 
+package com.project.serviceimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,14 +9,12 @@ import com.project.dao.StatusDao;
 import com.project.model.Status;
 import com.project.service.StatusService;
 
-
 @Service
 @Transactional
 public class StatusServiceImpl implements StatusService {
-	
+
 	@Autowired
 	StatusDao statusDao;
-	
 
 	@Override
 	public Status viewStatus(int statusId) {
@@ -33,7 +30,7 @@ public class StatusServiceImpl implements StatusService {
 
 	@Override
 	public boolean updateStatus(String statusName) {
-		
+
 		return updateStatus(statusName);
 	}
 

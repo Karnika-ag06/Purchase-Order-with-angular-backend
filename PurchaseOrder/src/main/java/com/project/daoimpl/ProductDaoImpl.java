@@ -18,19 +18,18 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Autowired
 	SessionFactory sessionFactory;
-	
+
 	@Override
 	public boolean addProduct(Products productObj) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
-			
+
 			session.saveOrUpdate(productObj);
 			return true;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	return false;
+		return false;
 	}
 
 	@Override
@@ -40,72 +39,66 @@ public class ProductDaoImpl implements ProductDao {
 			Query q = session.createQuery("from com.project.model.Products");
 			List<Products> productList = q.list();
 			return productList;
-			}
-			catch (Exception e) {
-				e.printStackTrace();
-			}
-			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public boolean deleteProduct(Products productObj) {
-		  try {
-              Session session = sessionFactory.getCurrentSession();
-              session.delete(productObj);
-              return true;
-		  }
-		  catch (Exception e) {
-              e.printStackTrace();
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			session.delete(productObj);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
 
-		  }
+		}
 
-		  return false;
+		return false;
 	}
 
 	@Override
 	public Products getProductByName(String productName) {
-		 try {
-	            Session session=sessionFactory.getCurrentSession();
-	            Query q = session.createQuery("from com.project.model.Products where product_name=:x");
-	          q.setParameter('x',productName);
-	          List productList = q.list();
-				if(productList.size()!=0) {
-	          return (Products)productList.get(0);
-				}
-		 }
-				catch (Exception e) {
-					e.printStackTrace();
-				}
-	        return null;
-			
-	    }
-	
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			Query q = session.createQuery("from com.project.model.Products where product_name=:x");
+			q.setParameter('x', productName);
+			List productList = q.list();
+			if (productList.size() != 0) {
+				return (Products) productList.get(0);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+
+	}
 
 	@Override
 	public boolean updateProduct(Products productObj) {
-		  try {
-              Session session = sessionFactory.getCurrentSession();
-              session.update(productObj);
-              return true;
-		  	}
-		  catch (Exception e) {
-              e.printStackTrace();
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			session.update(productObj);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
 
-		  }
+		}
 
-		  	return false;
+		return false;
 	}
 
 	@Override
 	public Products getProductById(int productId) {
 		try {
-			Session session=sessionFactory.getCurrentSession();
-			Products pro=session.get (Products.class,productId);
+			Session session = sessionFactory.getCurrentSession();
+			Products pro = session.get(Products.class, productId);
 			return pro;
-			}
-			catch(Exception e){
-				e.printStackTrace();
-			}
-			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

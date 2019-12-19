@@ -1,4 +1,4 @@
-  
+
 package com.project.model;
 
 import javax.persistence.Column;
@@ -7,15 +7,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Status")
+@Table(name = "Status")
 public class Status {
 	@Id
-	@Column(name="status_id")
-	private int statusId=911;
-	
-	@Column(name="status_name")
+	@Column(name = "status_id")
+	private int statusId = 911;
+
+	@Column(name = "status_name")
 	private String statusName;
-	
+
 	@Override
 	public String toString() {
 		return "status [statusId=" + statusId + ", statusName=" + statusName + "]";

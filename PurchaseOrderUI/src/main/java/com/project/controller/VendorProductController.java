@@ -21,75 +21,63 @@ import com.project.model.VendorProduct;
 
 @Controller
 public class VendorProductController {
-	
+
 	@Autowired
 	VendorProductDao vendorDaoObj;
-	
+
 	@Autowired
 	HttpSession session;
-	
-	
+
 	@Autowired
 	ProductDao productDaoObj;
-	
-	
-	
+
 	@RequestMapping(value = "/viewAllAvailableProducts", method = RequestMethod.GET)
 	public String viewAllAvailableProducts(ModelMap map) {
-		
-		User userObj=(User)session.getAttribute("uObj");
-		int vendorId=userObj.getUserId();
-		
+
+		User userObj = (User) session.getAttribute("uObj");
+		int vendorId = userObj.getUserId();
+
 		map.addAttribute("productDetails", vendorDaoObj.getAllProducts(vendorId));
-				
+
 		return "ViewProduct";
 
 	}
-	
-	
+
 	@RequestMapping(value = "/viewAllProducts", method = RequestMethod.GET)
 	public String viewAllProducts(ModelMap map) {
-		
+
 		map.addAttribute("productDetails", productDaoObj.viewAllProducts());
-		
+
 		return "ViewAllProducts";
 	}
-	
-	
-	@RequestMapping(value="/updateProductQuantity",method=RequestMethod.GET)
+
+	@RequestMapping(value = "/updateProductQuantity", method = RequestMethod.GET)
 	public String getUpdateQuantityForm(ModelMap map) {
-		
-		
+
 		map.addAttribute("productDetails", productDaoObj.viewAllProducts());
 		return "AddQuantity";
 	}
 
-	
+	@RequestMapping(value = "/updateProductQuantity", method = RequestMethod.POST)
+	public ModelAndView addInVendorproductTable(@RequestParam int pId, @RequestParam int quantity) {
 
-	@RequestMapping(value="/updateProductQuantity",method=RequestMethod.POST)
-	public ModelAndView addInVendorproductTable(@RequestParam int pId  , @RequestParam int quantity)
-	{
-		
-		
-		User userObj=(User)session.getAttribute("uObj");
-		
-		
-		VendorProduct r=vendorDaoObj.checkProductForVendor(userObj.getUserId(), pId);
-		if(r!=null) {
-			r.setQuantity(r.getQuantity()+quantity);
-		}
-		else {
+		User userObj = (User) session.getAttribute("uObj");
+
+		VendorProduct r = vendorDaoObj.checkProductForVendor(userObj.getUserId(), pId);
+		if (r != null) {
+			r.setQuantity(r.getQuantity() + quantity);
+		} else {
 			r = new VendorProduct();
 			r.setVendorId(userObj.getUserId());
 			r.setProductId(pId);
 			r.setQuantity(quantity);
 		}
-		
+
 		vendorDaoObj.add(r);
-		
-		ModelAndView mv=new ModelAndView("VendorPage");
-		mv.addObject("msg","Product Quantity Added Succesfully");
+
+		ModelAndView mv = new ModelAndView("VendorPage");
+		mv.addObject("msg", "Product Quantity Added Succesfully");
 		return mv;
 	}
-		
+
 }

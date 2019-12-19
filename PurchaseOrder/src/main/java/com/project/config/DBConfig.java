@@ -18,38 +18,38 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @Component
 @EnableTransactionManagement
-@ComponentScan(basePackages={"com.project"})
+@ComponentScan(basePackages = { "com.project" })
 public class DBConfig {
-	
-	@Bean(name="dataSource")
-	public DataSource getDataSource(){
-		DriverManagerDataSource dataSource=new DriverManagerDataSource();
+
+	@Bean(name = "dataSource")
+	public DataSource getDataSource() {
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
 		dataSource.setUsername("hr");
 		dataSource.setPassword("hr");
 		return dataSource;
 	}
-	
-	@Bean(name="sessionFactory")
-	public SessionFactory getSessionFactory(){
-		Properties properties=new Properties();
-		properties.setProperty("hibernate.dialect","org.hibernate.dialect.Oracle10gDialect");
-		properties.setProperty("hibernate.hbm2ddl.auto","update");
-		properties.setProperty("hibernate.show_sql","true");
-		
-		LocalSessionFactoryBuilder builder=new LocalSessionFactoryBuilder(getDataSource());
+
+	@Bean(name = "sessionFactory")
+	public SessionFactory getSessionFactory() {
+		Properties properties = new Properties();
+		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
+		properties.setProperty("hibernate.hbm2ddl.auto", "update");
+		properties.setProperty("hibernate.show_sql", "true");
+
+		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(getDataSource());
 		builder.addProperties(properties);
 		builder.scanPackages("com.project.model");
-		
-		SessionFactory factory=builder.buildSessionFactory();
+
+		SessionFactory factory = builder.buildSessionFactory();
 		return factory;
 	}
 
-	@Bean(name="hibernateTransactionManager")
+	@Bean(name = "hibernateTransactionManager")
 	@Autowired
-	public HibernateTransactionManager getHibernateTransactionManager(SessionFactory sessionFactory){
-		HibernateTransactionManager txManager=new HibernateTransactionManager(sessionFactory);
+	public HibernateTransactionManager getHibernateTransactionManager(SessionFactory sessionFactory) {
+		HibernateTransactionManager txManager = new HibernateTransactionManager(sessionFactory);
 		return txManager;
 	}
 }

@@ -7,44 +7,51 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Table_Product")
+@Table(name = "Table_Product")
 public class Products {
-	
+
 	@Id
 	@GeneratedValue
-	@Column(name="product_id")
+	@Column(name = "product_id")
 	private int productId;
-	
-	@Column(name="product_name")
+
+	@Column(name = "product_name")
 	private String productName;
-	
-	@Column(name="product_desc")
+
+	@Column(name = "product_desc")
 	private String productDesc;
-	
-	@Column(name="product_price")
+
+	@Column(name = "product_price")
 	private double productPrice;
-	
+
 	public int getProductId() {
 		return productId;
 	}
+
 	public void setProductId(int productId) {
 		this.productId = productId;
 	}
+
 	public String getProductName() {
 		return productName;
 	}
+
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
+
 	public String getProductDesc() {
 		return productDesc;
 	}
+
 	public void setProductDesc(String productDesc) {
 		this.productDesc = productDesc;
 	}
+
 	public double getProductPrice() {
 		return productPrice;
 	}
+
 	public void setProductPrice(double productPrice) {
 		this.productPrice = productPrice;
 	}
@@ -55,4 +62,3 @@ public class Products {
 				+ ", productPrice=" + productPrice + "]";
 	}
 }
-

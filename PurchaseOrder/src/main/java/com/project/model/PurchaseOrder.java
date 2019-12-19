@@ -1,4 +1,4 @@
-  
+
 package com.project.model;
 
 import java.time.LocalDate;
@@ -14,31 +14,33 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name="Table_Purchaseorder")
+@Table(name = "Table_Purchaseorder")
 public class PurchaseOrder {
-	
 
 	@Id
-	@Column(name="purchaseOrder_Id")
+	@Column(name = "purchaseOrder_Id")
 	@GeneratedValue
 	private int purchaseOrderId;
-	
+
 	@ManyToOne
-	@JoinColumn(name="buyer_Id")
+	@JoinColumn(name = "buyer_Id")
 	private User userObj;
-	
-    @ManyToOne
-	@JoinColumn(name="Seller_Id")
+
+	@ManyToOne
+	@JoinColumn(name = "Seller_Id")
 	private User sellerObj;
-	
-	@OneToMany(mappedBy="purchaseOrderObj",cascade=CascadeType.ALL)
+
+	@OneToMany(mappedBy = "purchaseOrderObj", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<PurchaseOrderItems> purchaseOrderItemsObj;
-	
-	@Column(name="status")
+
+	@Column(name = "status")
 	private String status;
-	
-	@Column(name="created_Date")
+
+	@Column(name = "created_Date")
 	private LocalDate createdDate;
 
 	public int getPurchaseOrderId() {
@@ -88,6 +90,5 @@ public class PurchaseOrder {
 	public void setCreatedDate(LocalDate createdDate) {
 		this.createdDate = createdDate;
 	}
-	
+
 }
-    

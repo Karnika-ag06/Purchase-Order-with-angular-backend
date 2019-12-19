@@ -115,7 +115,7 @@ public class POController {
 		
 		
 		System.out.println(viewId);
-		List<PurchaseOrderItemsDao> poitemslist = purchaseOrderItems.getLineItemsById(viewId);
+		List<PurchaseOrderItems> poitemslist = purchaseOrderItems.getLineItemsById(viewId);
 		map.addAttribute("poitemslist", poitemslist);
 		System.out.println(poitemslist);
 		session.setAttribute("poitemslist", poitemslist);

@@ -14,10 +14,9 @@ import com.project.service.ProductService;
 @Transactional
 public class ProductServiceImpl implements ProductService {
 
-	
 	@Autowired
 	ProductDao productDao;
-	
+
 	@Override
 	public boolean addProduct(Products productObj) {
 		return productDao.addProduct(productObj);
@@ -48,6 +47,5 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.getProductById(productId);
 
 	}
-	
-	
+
 }

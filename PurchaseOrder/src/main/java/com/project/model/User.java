@@ -9,53 +9,46 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name="Table_User")
-public class User 
-{
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="User_Id")
-	private int userId;
-	
-	
-	@Column(name="User_Name")
-	private String userName;
-	
-	
-	@Column(name="User_Email")
-	private String  userEmail;
-	
-	@Column(name="User_Address")
-	private String userAddress;
-	
-	@Column(name="User_Mobile")
-	private long userMobile;
-	
-	@Column(name="User_IsActive")
-	private String userIsActive;
-	
-	@Column(name="Created_Date")
-	private LocalDate createdDate;
-	
-	@Column(name="Updated_Date")
-	private LocalDate updatedDate;
-	
-	@Column(name="Created_By")
-	private String createdBy;
-	
+@Table(name = "Table_User")
+public class User {
 
-	@Column(name="Updated_By")
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "User_Id")
+	private int userId;
+
+	@Column(name = "User_Name")
+	private String userName;
+
+	@Column(name = "User_Email")
+	private String userEmail;
+
+	@Column(name = "User_Address")
+	private String userAddress;
+
+	@Column(name = "User_Mobile")
+	private long userMobile;
+
+	@Column(name = "User_IsActive")
+	private String userIsActive;
+
+	@Column(name = "Created_Date")
+	private LocalDate createdDate;
+
+	@Column(name = "Updated_Date")
+	private LocalDate updatedDate;
+
+	@Column(name = "Created_By")
+	private String createdBy;
+
+	@Column(name = "Updated_By")
 	private String updatedBy;
-	
-	
-	@Column(name="User_Role")
+
+	@Column(name = "User_Role")
 	private String userRole;
-	
-	
-	@Column(name="User_Password")
+
+	@Column(name = "User_Password")
 	private String userPassword;
 
 	public int getUserId() {
@@ -154,5 +147,4 @@ public class User
 		this.userPassword = userPassword;
 	}
 
-	
 }

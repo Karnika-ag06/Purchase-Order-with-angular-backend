@@ -10,25 +10,25 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.project.dao.PurchaseOrderItemsDao;
+import com.project.model.PurchaseOrderItems;
 
 @Repository("pruchaseOrderItems")
 @Transactional
-public class PurchaseOrderItemsDaoImpl implements PurchaseOrderItemsDao{
+public class PurchaseOrderItemsDaoImpl implements PurchaseOrderItemsDao {
 
 	@Autowired
 	SessionFactory sessionFactory;
-	
+
 	@Override
-	public List<PurchaseOrderItemsDao> getLineItemsById(int purchaseOrderId) {
-try {
-			
+	public List<PurchaseOrderItems> getLineItemsById(int purchaseOrderId) {
+		try {
+
 			Session session = sessionFactory.getCurrentSession();
 			Query q = session.createQuery("from com.project.model.PurchaseOrderItems where purchaseOrderId=:x");
 			q.setParameter("x", purchaseOrderId);
-			List<PurchaseOrderItemsDao> poiList = q.list();
+			List<PurchaseOrderItems> poiList = q.list();
 			return poiList;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
